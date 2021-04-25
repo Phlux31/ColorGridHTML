@@ -12,44 +12,46 @@
             justify-content: center;
         }
         .container {
-            height: 78vh;
-            width: 78vh;
+            height: 150vh;
+            width: 75vh;
+            display: flex;
+            flex-wrap: wrap;
         }
-        .gridsquare {
+        .colorbox {
             background-color: rgb(85, 84, 84);
-            height: calc(24% - 1px);
-            width: calc(24% - 1px);
-            float: left;
-            margin: 1px;
+            height: 7.5vh;
+            width: 7.5vh;
+        }
+        .colorbox:hover {
+        box-shadow: 0 0 2px 2px white; 
+        z-index: 10;
         }
     </style>
-    <script>
-        function changeColor(id) {
-            var r = Math.floor(Math.random()*255);
-            var g = Math.floor(Math.random()*255);
-            var b = Math.floor(Math.random()*255);
-            document.getElementById(id).style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
-        }
-    </script>
+    
 </head>
 <body>
-    <div class="container">
-        <div class="gridsquare" id="1" onmouseover="changeColor(id)"></div>
-        <div class="gridsquare" id="2" onmouseover="changeColor(id)"></div>
-        <div class="gridsquare" id="3" onmouseover="changeColor(id)"></div>
-        <div class="gridsquare" id="4" onmouseover="changeColor(id)"></div>
-        <div class="gridsquare" id="5" onmouseover="changeColor(id)"></div>
-        <div class="gridsquare" id="6" onmouseover="changeColor(id)"></div>
-        <div class="gridsquare" id="7" onmouseover="changeColor(id)"></div>
-        <div class="gridsquare" id="8" onmouseover="changeColor(id)"></div>
-        <div class="gridsquare" id="9" onmouseover="changeColor(id)"></div>
-        <div class="gridsquare" id="10" onmouseover="changeColor(id)"></div>
-        <div class="gridsquare" id="11" onmouseover="changeColor(id)"></div>
-        <div class="gridsquare" id="12" onmouseover="changeColor(id)"></div>
-        <div class="gridsquare" id="13" onmouseover="changeColor(id)"></div>
-        <div class="gridsquare" id="14" onmouseover="changeColor(id)"></div>
-        <div class="gridsquare" id="15" onmouseover="changeColor(id)"></div>
-        <div class="gridsquare" id="16" onmouseover="changeColor(id)"></div>
-    </div>
+    <div class="container" id="container"></div>
 </body>
+<script>
+    window.onload = createDivs(200); //set number of color boxes to display here
+
+    function createDivs(numBoxes) {  //function that creates divs with colorbox class and unique id
+        let uniqueId = 0;
+        for (let i = 0; i < numBoxes; i++) { //for loop adds specified number to container class
+            let create = document.createElement("div");
+            create.className = "colorbox";
+            create.id = uniqueId;
+            uniqueId += 1;
+            create.setAttribute("onmouseover", "changeColor(id)");
+            document.getElementById("container").appendChild(create);
+        } 
+    }
+
+    function changeColor(id){  //generates 3 random numbers to make up a RGB color, then assigns it to div with given id as a background color
+        var r = Math.floor(Math.random()*255);
+        var g = Math.floor(Math.random()*255);
+        var b = Math.floor(Math.random()*255);
+        document.getElementById(id).style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+    }
+</script>
 </html>
