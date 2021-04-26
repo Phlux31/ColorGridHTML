@@ -36,12 +36,10 @@
     window.onload = createDivs(200); //set number of color boxes to display here
 
     function createDivs(numBoxes) {  //function that creates divs with colorbox class and unique id
-        let uniqueId = 0;
         for (let i = 0; i < numBoxes; i++) { //for loop adds specified number to container class
             let create = document.createElement("div");
             create.className = "colorbox";
-            create.id = uniqueId;
-            uniqueId += 1;
+            create.id = i;
             create.setAttribute("onmouseover", "changeColor(id)");
             document.getElementById("container").appendChild(create);
         } 
